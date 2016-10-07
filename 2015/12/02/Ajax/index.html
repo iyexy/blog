@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>如何使用 Ajax | Yexy&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Ajax技术的核心是XMLHttpRequest对象（简称XHR)，XHR用于在后台与服务器交换数据。Ajax可以以异步方式（等待服务器响应的同时仍然可以继续执行其他脚本）与服务器通信，使用XHR对象取得新数据，在通过DOM载入到页面中，这意味着可以在不刷新整个页面的情况下，部分更新网页的内容。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何使用 Ajax">
+<meta property="og:url" content="https://github.com/iyexy/blog/2015/12/02/Ajax/index.html">
+<meta property="og:site_name" content="Yexy's blog">
+<meta property="og:description" content="Ajax技术的核心是XMLHttpRequest对象（简称XHR)，XHR用于在后台与服务器交换数据。Ajax可以以异步方式（等待服务器响应的同时仍然可以继续执行其他脚本）与服务器通信，使用XHR对象取得新数据，在通过DOM载入到页面中，这意味着可以在不刷新整个页面的情况下，部分更新网页的内容。">
+<meta property="og:updated_time" content="2016-09-21T17:09:26.123Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何使用 Ajax">
+<meta name="twitter:description" content="Ajax技术的核心是XMLHttpRequest对象（简称XHR)，XHR用于在后台与服务器交换数据。Ajax可以以异步方式（等待服务器响应的同时仍然可以继续执行其他脚本）与服务器通信，使用XHR对象取得新数据，在通过DOM载入到页面中，这意味着可以在不刷新整个页面的情况下，部分更新网页的内容。">
+  
+    <link rel="alternate" href="/atom.xml" title="Yexy&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/blog/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">Yexy&#39;s blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/blog/" id="subtitle">Keep calm and love ♥</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://github.com/iyexy/blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Ajax" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2015/12/02/Ajax/" class="article-date">
+  <time datetime="2015-12-02T14:39:47.000Z" itemprop="datePublished">2015-12-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/tech/">tech</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      如何使用 Ajax
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Ajax技术的核心是XMLHttpRequest对象（简称<em>XHR</em>)，XHR用于在后台与服务器交换数据。Ajax可以以异步方式（等待服务器响应的同时仍然可以继续执行其他脚本）与服务器通信，使用XHR对象取得新数据，在通过DOM载入到页面中，这意味着可以在不刷新整个页面的情况下，部分更新网页的内容。<br> <a id="more"></a></p>
+<p><strong>创建XHR对象</strong><br>使用XMLHttpRequest 构造函数来创建XHR对象，IE7+、 Firefox、Chrome、Safari 以及 Opera 均支持原生的XHR对象。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</div></pre></td></tr></table></figure></p>
+<p><strong>XHR的用法</strong><br>使用XHR对象时需要调用open()法，来启动一个请求以备发送，它接受三个参数，要发送的请求类型（get 或 post），请求的URL和表示是否一部发动异步请求的布尔值。如果你希望发送异步请求，则需要将async的参数设置为true。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">open (method,url,<span class="keyword">async</span>);</div></pre></td></tr></table></figure></p>
+<p>调用send()方法发送请求<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">send ();</div></pre></td></tr></table></figure></p>
+<p>send()方法接受一个参数，作为请求主体发送的数据，参数对有些浏览器来说必须的，如果不需要通过请求主体发送数据 则传入null。</p>
+<p>如果你希望支持IE的早期版本（使用的是ActiveX对象） ，则需要在代码中加入对原生XHR对象的支持。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">createXHR</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> XMLHttpRequest != <span class="string">"undefined"</span>) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">        <span class="comment">//检测ActiveX对象是否存在</span></div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> ActiveXobject != <span class="string">"undefined"</span>) &#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">arguments</span>.callee.activeString != <span class="string">"string"</span>) &#123;</div><div class="line">            <span class="keyword">var</span> versions = [<span class="string">"MSXML2.XMLHttp.6.0"</span>, <span class="string">"MSXML2.XMLHttp.3.0"</span>,</div><div class="line">                    <span class="string">"MSXML2.XMLHttp"</span></div><div class="line">                ],</div><div class="line">                i, len;</div><div class="line">            <span class="keyword">for</span> (i = <span class="number">0</span>, len = versions.length; i &lt; len; i++) &#123;</div><div class="line">                <span class="keyword">try</span> &#123;</div><div class="line">                    <span class="keyword">new</span> ActiveXobject(versions[i]);</div><div class="line">                    <span class="built_in">arguments</span>.callee.activeString = versions[i];</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                &#125; <span class="keyword">catch</span> (ex) &#123;</div><div class="line">                    <span class="comment">//跳过</span></div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ActiveXobject(<span class="built_in">arguments</span>.callee.activeString);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="comment">//如果两者都不存在，则抛出一个错误</span></div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"No XHR object available!"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>接着就可以调用以上的方法在所有浏览器中创建XHR对象了。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> xhr=createXHR();</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/iyexy/blog/blog/2015/12/02/Ajax/" data-id="citzxpfze00011cteozl1ti49" class="article-share-link">Share</a>
+      
+        <a href="https://github.com/iyexy/blog/blog/2015/12/02/Ajax/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Ajax/">Ajax</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2016/08/22/singleton/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          JavaScript 单例模式
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2015/08/24/gulp/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">简单的开始使用gulp</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/tech/">tech</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Ajax/">Ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Gulp/">Gulp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/JavaScript/">JavaScript</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2016/08/22/singleton/">JavaScript 单例模式</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2015/12/02/Ajax/">如何使用 Ajax</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2015/08/24/gulp/">简单的开始使用gulp</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 yexy<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'iyexy';
+  
+  var disqus_url = 'https://github.com/iyexy/blog/blog/2015/12/02/Ajax/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-78058192-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+  </div>
+</body>
+</html>
